@@ -23,3 +23,17 @@ char marca[TAM][12]; //obrigatorio
 char modelos[TAM][20]; //obrigatorio
 
 char ocupados[TAM];
+int listar(); //Diz quais lugares da lista estao ocupados e desocupados
+{
+    for(int i = 0; i < TAM; i++)
+    {
+        ocupados[i] = 0;
+    }
+}
+
+int main()
+{
+    listar();
+
+    return 0;
+}
