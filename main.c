@@ -29,6 +29,20 @@ void iniciar() // Diz que todos os lugares na lista estao desocupados
     }
 }
 
+void exclude_serv(char nome[]) // Exclui os servidores por nome
+{
+    int index = -1;
+    for (int i = 0; i < TAM; i++)
+    {
+        if (strcmp(nomes[i], nome) == 0)
+        {
+            index = i;
+            ocupados[index] = 0;
+            break;
+        }
+    }
+}
+
 void insert_serv(int codigo, char nome[], char SIAPE[], char CPF[], char RG[], char endereco[], char salario[], char data[], char tipo[])
 {
     int index = -1;
@@ -70,7 +84,14 @@ int main()
 {
     iniciar();
 
-    insert_serv(1,"Pedro", "1000", "60618863303", "20076005644", "Av. Paulista, 143", "R$1000,00", "03/05/2003", "docente");
+    insert_serv(1,"Pedro", "1000", "60619967130", "70013003622", "Av. Paulista, 143", "R$1000,00", "03/05/2003", "docente");
+
+    insert_serv(2, "Victor", "1001", "01253287699", "4312674500", "Rua do Congo, 12", "R$2000,00", "14/02/2000", "tec. adm.");
+
+    list();
+
+    exclude_serv("Pedro");
+
     list();
 
     return 0;
