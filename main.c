@@ -41,13 +41,13 @@ void input(char str[], int tam) // Pega o input do usuario, limpa o buffer e tir
 
 void exclude_serv() // Exclui os servidores por CPF
 {
-    char cpf[13];
+    char code[10];
     printf("Digite o codigo do servidor:");
-    input(cpf, 13);
+    input(code, 10);
     int index = -1;
     for (int i = 0; i < TAM; i++)
     {
-        if (strcmp(codes_servs[i], cpf) == 0)
+        if (strcmp(codes_servs[i], code) == 0)
         {
             index = i;
             ocupados[index] = 0;
@@ -117,11 +117,62 @@ void list()
     for (int i = 0; i < TAM; ++i)
     {
         if(ocupados[i] == 1 ){
-            printf("#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n",codes_servs[i], nomes[i], SIAPEs[i], RGs[i], CPFs[i], enderecos[i], salarios[i], datas[i], tipos[i]);
+            printf("\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n",codes_servs[i], nomes[i], SIAPEs[i], RGs[i], CPFs[i], enderecos[i], salarios[i], datas[i], tipos[i]);
         }
     }
     printf("##################################\n\n");
 
+}
+
+void edit_serv() //Edição de servidor por código, vai ser alterado tudo menos o código
+{
+    int index = -1;
+    char code[10];
+    printf("Digite o codigo do servidor para edição");
+    input(code, 10);
+    for(int i = 0; i < TAM; i++)
+    {
+        index = i;
+        if(strcmp(codes_servs[i], code) == 0)
+        {
+            char nome[255];
+            char SIAPE[20];
+            char CPF[13];
+            char RG[13];
+            char endereco[255];
+            char salario[10];
+            char data[11];
+            char tipo[25];
+
+            printf("nome:");
+            input(nome, 255);
+            printf("SIAPE:");
+            input(SIAPE, 20);
+            printf("CPF:");
+            input(CPF, 13);
+            printf("RG:");
+            input(RG, 13);
+            printf("endereco:");
+            input(endereco, 255);
+            printf("salario:");
+            input(salario, 10);
+            printf("data de nascimento:");
+            input(data, 11);
+            printf("tipo:");
+            input(tipo, 20);
+            printf("\n");
+
+            strcpy(nomes[index], nome);
+            strcpy(SIAPEs[index], SIAPE);
+            strcpy(CPFs[index] , CPF);
+            strcpy(RGs[index], RG);
+            strcpy(enderecos[index], endereco);
+            strcpy(salarios[index], salario);
+            strcpy(datas[index], data);
+            strcpy(tipos[index], tipo);
+            break;
+        }
+    }
 }
 
 int main()
@@ -129,6 +180,14 @@ int main()
     iniciar();
 
     insert_serv();
+
+    list();
+
+    insert_serv();
+
+    list();
+
+    edit_serv();
 
     list();
 
