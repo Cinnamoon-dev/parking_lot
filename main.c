@@ -124,6 +124,22 @@ void list()
 
 }
 
+void list_code()
+{
+    int index = -1;
+    char code[10];
+    printf("Digite o codigo do servidor para listar:");
+    input(code, 10);
+    for(int i = 0; i < TAM; i++)
+    {
+        index = i;
+        if(strcmp(codes_servs[i], code) == 0)
+        {
+            printf("\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n",codes_servs[i], nomes[i], SIAPEs[i], RGs[i], CPFs[i], enderecos[i], salarios[i], datas[i], tipos[i]);
+        }
+    }
+}
+
 void edit_serv() //Edição de servidor por código, vai ser alterado tudo menos o código
 {
     int index = -1;
@@ -186,6 +202,8 @@ int main()
     insert_serv();
 
     list();
+
+    list_code();
 
     edit_serv();
 
