@@ -15,7 +15,7 @@ char tipos[TAM][20]; // obrigatorio
 char ocupados[TAM]; // Diz qual espaço da lista está vazio
 
 // Vars para veículos
-int codes_cars[TAM]; // obrigatorio
+char codes_cars[TAM]; // obrigatorio
 // codes_servs[TAM]; // de novo
 char descs[TAM][255]; // obrigatorio
 char placas[TAM][8]; // obrigatorio
@@ -29,16 +29,25 @@ void iniciar() // Diz que todos os lugares na lista estao desocupados
     }
 }
 
+void input(char str[], int tam) // Pega o input do usuario, limpa o buffer e tira o \n do final caso tenha
+{
+    fgets(str, tam, stdin);
+    fflush(stdin);
+
+    size_t ln = strlen(str) - 1;
+    if (str[ln] == '\n')
+        str[ln] = '\0';
+}
+
 void exclude_serv() // Exclui os servidores por CPF
 {
-    char CPF[14];
-    printf("Digite o CPF do servidor:");
-    fgets(CPF, 13, stdin);
-    fflush(stdin);
+    char cpf[13];
+    printf("Digite o codigo do servidor:");
+    input(cpf, 13);
     int index = -1;
     for (int i = 0; i < TAM; i++)
     {
-        if (strcmp(CPFs[i], CPF) == 0)
+        if (strcmp(codes_servs[i], cpf) == 0)
         {
             index = i;
             ocupados[index] = 0;
@@ -46,7 +55,6 @@ void exclude_serv() // Exclui os servidores por CPF
 
         }
     }
-
 }
 
 void insert_serv()
@@ -71,32 +79,23 @@ void insert_serv()
     char tipo[25];
 
     printf("codigo:");
-    fgets(codigo, 10, stdin);
-    fflush(stdin);
+    input(codigo, 10);
     printf("nome:");
-    fgets(nome, 255, stdin);
-    fflush(stdin);
+    input(nome, 255);
     printf("SIAPE:");
-    fgets(SIAPE, 20, stdin);
-    fflush(stdin);
+    input(SIAPE, 20);
     printf("CPF:");
-    fgets(CPF, 12, stdin);
-    fflush(stdin);
+    input(CPF, 13);
     printf("RG:");
-    fgets(RG, 12, stdin);
-    fflush(stdin);
+    input(RG, 13);
     printf("endereco:");
-    fgets(endereco, 255, stdin);
-    fflush(stdin);
+    input(endereco, 255);
     printf("salario:");
-    fgets(salario, 15, stdin);
-    fflush(stdin);
+    input(salario, 10);
     printf("data de nascimento:");
-    fgets(data, 11, stdin);
-    fflush(stdin);
+    input(data, 11);
     printf("tipo:");
-    fgets(tipo, 20, stdin);
-    fflush(stdin);
+    input(tipo, 20);
     printf("\n");
 
     strcpy(codes_servs[index], codigo);
@@ -118,7 +117,7 @@ void list()
     for (int i = 0; i < TAM; ++i)
     {
         if(ocupados[i] == 1 ){
-            printf("%s#\t%s#\t %s#\t%s#\t%s#\t%s#\t%s#\t%s#\t%s#\n",codes_servs[i], nomes[i], SIAPEs[i], RGs[i], CPFs[i], enderecos[i], salarios[i], datas[i], tipos[i]);
+            printf("#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n",codes_servs[i], nomes[i], SIAPEs[i], RGs[i], CPFs[i], enderecos[i], salarios[i], datas[i], tipos[i]);
         }
     }
     printf("##################################\n\n");
@@ -130,10 +129,6 @@ int main()
     iniciar();
 
     insert_serv();
-
-    //insert_serv(1,"Pedro", "1000", "60619967130", "70013003622", "Av. Paulista, 143", "R$1000,00", "03/05/2003", "docente");
-
-    //insert_serv(2, "Victor", "1001", "01253287699", "4312674500", "Rua do Congo, 12", "R$2000,00", "14/02/2000", "tec. adm.");
 
     list();
 
