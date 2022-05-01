@@ -131,9 +131,9 @@ void exclude_car() { // Exclui os veiculos pelo codigo do veiculo
     strcpy(marcas[index1][index2], "0");
     strcpy(modelos[index1][index2], "0");
     ocupados_cars[index1][index2] = '0';
-}
+} //
 
-void insert_car()
+void insert_car() //
 {
     char v[20];
     int index1 = -1;
@@ -158,86 +158,62 @@ void insert_car()
     char placa[20];
     char marca[20];
     char modelo[20];
-
     int cmp_count = 0;
+
     input(code_car, 20, "codigo do veiculo:");
     for (int j = 0; j < TAM; j++) {
-        if (strcmp(code_car, codes_cars[index1][index2]) == 0) {
+        if (strcmp(code_car, codes_cars[index1][j]) == 0)
             cmp_count++;
-        }
     }
-    for (int i = 1; i > 0; i++) {
-        if (strlen(code_car) == 0 || cmp_count != 0) {
-            do {
-                input(code_car, 20, "Esse valor nao pode ficar em branco ou ja foi cadastrado:");
-                cmp_count = 0;
-                for (int j = 0; j < TAM; j++) {
-                    if (strcmp(code_car, codes_cars[index1][index2]) == 0) {
-                        cmp_count++;
-                    }
-                }
-            } while (strlen(code_car) == 0 || cmp_count != 0);
-
-        } else
-            break;
+    if (strlen(code_car) == 0 || cmp_count != 0) {
+        do {
+            input(code_car, 20, "Esse valor nao pode ficar em branco ou ja foi cadastrado:");
+            cmp_count = 0;
+            for (int j = 0; j < TAM; j++) {
+                if (strcmp(code_car, codes_cars[index1][j]) == 0)
+                    cmp_count++;
+            }
+        } while (strlen(code_car) == 0 || cmp_count != 0);
     }
     cmp_count = 0;
 
     input(desc, 255, "descricao:");
     for (int j = 0; j < TAM; j++) {
-        if (strcmp(desc, descs[index1][index2]) == 0) {
+        if (strcmp(desc, descs[index1][j]) == 0)
             cmp_count++;
-        }
     }
-    for (int i = 1; i > 0; i++) {
-        if (strlen(desc) == 0 || cmp_count != 0) {
-            do {
-                input(desc, 20, "Esse valor nao pode ficar em branco ou ja foi cadastrado:");
-                cmp_count = 0;
-                for (int j = 0; j < TAM; j++) {
-                    if (strcmp(desc, descs[index1][index2]) == 0) {
-                        cmp_count++;
-                    }
-                }
-            } while (strlen(desc) == 0 || cmp_count != 0);
-
-        } else
-            break;
+    if (strlen(desc) == 0 || cmp_count != 0) {
+        do {
+            input(desc, 20, "Esse valor nao pode ficar em branco ou ja foi cadastrado:");
+            cmp_count = 0;
+            for (int j = 0; j < TAM; j++) {
+                if (strcmp(desc, descs[index1][j]) == 0)
+                    cmp_count++;
+            }
+        } while (strlen(desc) == 0 || cmp_count != 0);
     }
     cmp_count = 0;
 
     input(placa, 20, "placa:");
-    for (int i = 1; i > 0; i++) {
         if (strlen(placa) == 0) {
             do {
                 input(placa, 20, "Esse valor nao pode ficar em branco:");
             } while (strlen(placa) == 0);
-
-        } else
-            break;
-    }
+        }
 
     input(marca, 20, "marca:");
-    for (int i = 1; i > 0; i++) {
         if (strlen(marca) == 0) {
             do {
                 input(marca, 20, "Esse valor nao pode ficar em branco:");
             } while (strlen(marca) == 0);
-
-        } else
-            break;
-    }
+        }
 
     input(modelo, 255, "modelo:");
-    for (int i = 1; i > 0; i++) {
         if (strlen(modelo) == 0) {
             do {
                 input(modelo, 20, "Esse valor nao pode ficar em branco:");
             } while (strlen(modelo) == 0);
-
-        } else
-            break;
-    }
+        }
 
     lower_case(code_car, 20);
     lower_case(desc, 255);
@@ -256,9 +232,8 @@ void insert_car()
 void insert_serv()
 {
     int index = -1;
-    for (int i = 0; i < TAM; ++i)
-    {
-        if(ocupados[i] == 0 ){
+    for (int i = 0; i < TAM; ++i) {
+        if(ocupados[i] == 0 ) {
             index = i;
             break;
         }
@@ -277,118 +252,90 @@ void insert_serv()
     input(codigo, 20, "codigo:");
     int cmp_count = 0;
     for(int j = 0; j < TAM; j++) {
-        if(strcmp(codigo, codes_servs[j]) == 0) {
+        if(strcmp(codigo, codes_servs[j]) == 0)
             cmp_count++;
-        }
     }
-    for (int i = 1; i > 0; i++) {
-        if (strlen(codigo) == 0 || cmp_count != 0) {
-            do {
-                input(codigo, 20, "Esse valor nao pode ficar em branco ou ja foi cadastrado:");
-                cmp_count = 0;
-                for(int j = 0; j < TAM; j++) {
-                    if(strcmp(codigo, codes_servs[j]) == 0) {
-                        cmp_count++;
-                    }
-                }
-            } while (strlen(codigo) == 0 || cmp_count != 0);
-
-        }
-        else
-            break;
+    if (strlen(codigo) == 0 || cmp_count != 0) {
+        do {
+            input(codigo, 20, "Esse valor nao pode ficar em branco ou ja foi cadastrado:");
+            cmp_count = 0;
+            for(int j = 0; j < TAM; j++) {
+                if(strcmp(codigo, codes_servs[j]) == 0)
+                    cmp_count++;
+            }
+        } while (strlen(codigo) == 0 || cmp_count != 0);
     }
     cmp_count = 0;
 
     input(nome, 255, "nome:");
-    for (int i = 1; i > 0; i++) {
         if (strlen(nome) == 0) {
             do {
                 input(nome, 20, "Esse valor nao pode ficar em branco:");
             } while (strlen(nome) == 0);
-
         }
-        else
-            break;
-    }
 
     input(SIAPE, 20, "SIAPE:");
     for(int j = 0; j < TAM; j++) {
-        if(strcmp(SIAPE, SIAPEs[j]) == 0) {
+        if(strcmp(SIAPE, SIAPEs[j]) == 0)
             cmp_count++;
-        }
     }
-    for (int i = 1; i > 0; i++) {
-        if (strlen(SIAPE) == 0 || cmp_count != 0) {
-            do {
-                input(SIAPE, 20, "Esse valor nao pode ficar em branco ou ja foi cadastrado:");
-                cmp_count = 0;
-                for(int j = 0; j < TAM; j++) {
-                    if(strcmp(SIAPE, SIAPEs[j]) == 0) {
-                        cmp_count++;
-                    }
-                }
-            } while (strlen(SIAPE) == 0 || cmp_count != 0);
-
-        }
-        else
-            break;
+    if (strlen(SIAPE) == 0 || cmp_count != 0) {
+        do {
+            input(SIAPE, 20, "Esse valor nao pode ficar em branco ou ja foi cadastrado:");
+            cmp_count = 0;
+            for(int j = 0; j < TAM; j++) {
+                if(strcmp(SIAPE, SIAPEs[j]) == 0)
+                    cmp_count++;
+            }
+        } while (strlen(SIAPE) == 0 || cmp_count != 0);
     }
     cmp_count = 0;
 
     input(CPF, 20, "CPF:");
     for(int j = 0; j < TAM; j++) {
-        if(strcmp(CPF, CPFs[j]) == 0) {
+        if(strcmp(CPF, CPFs[j]) == 0)
             cmp_count++;
-        }
     }
-    for (int i = 1; i > 0; i++) {
-        if (strlen(CPF) == 0 || cmp_count != 0) {
-            do {
-                input(CPF, 20, "Esse valor nao pode ficar em branco ou ja foi cadastrado:");
-                cmp_count = 0;
-                for(int j = 0; j < TAM; j++) {
-                    if(strcmp(CPF, CPFs[j]) == 0) {
-                        cmp_count++;
-                    }
-                }
-            } while (strlen(CPF) == 0 || cmp_count != 0);
-
-        }
-        else
-            break;
+    if (strlen(CPF) == 0 || cmp_count != 0) {
+        do {
+            input(CPF, 20, "Esse valor nao pode ficar em branco ou ja foi cadastrado:");
+            cmp_count = 0;
+            for(int j = 0; j < TAM; j++) {
+                if(strcmp(CPF, CPFs[j]) == 0)
+                    cmp_count++;
+            }
+        } while (strlen(CPF) == 0 || cmp_count != 0);
     }
     cmp_count = 0;
 
     input(RG, 20, "RG:");
+    if(strlen(RG) == 0)
+        strcpy(RG, "omitido");
+
     input(endereco, 255, "endereco:");
+    if(strlen(endereco) == 0)
+        strcpy(endereco, "omitido");
+
     input(salario, 20, "salario:");
+    if(strlen(salario) == 0)
+        strcpy(salario, "omitido");
+
     input(data, 20, "data de nascimento:");
-    for (int i = 1; i > 0; i++) {
         if (strlen(data) == 0) {
             do {
                 input(data, 20, "Esse valor nao pode ficar em branco:");
             } while (strlen(data) == 0);
-
         }
-        else
-            break;
-    }
 
     input(tipo, 30, "tipo (1 para docente, 2 para tecnico administrativo):");
-    if(strcmp(tipo, "1") == 0) {
+    if(strcmp(tipo, "1") == 0)
         strcpy(tipo, "docente");
-    }
-    else if(strcmp(tipo, "2") == 0) {
+
+    else if(strcmp(tipo, "2") == 0)
         strcpy(tipo, "tecnico administrativo");
-    }
-    else if(strcmp(tipo, "1") != 0 || strcmp(tipo, "2") != 0) {
-        for(int i = 1; i > 0; i++) {
-            do {
-                printf("Digite 1 para docente ou 2 para tecnico administrativo:");
-                input(tipo, 30, "");
-            } while(strcmp(tipo, "1") != 0 || strcmp(tipo, "2") != 0);
-        }
-    }
+
+    else if(strcmp(tipo, "1") != 0 || strcmp(tipo, "2") != 0 && strlen(tipo) != 0)
+        strcpy(tipo, "omitido");
 
     printf("\n");
 
@@ -412,23 +359,22 @@ void insert_serv()
     strcpy(datas[index], data);
     strcpy(tipos[index], tipo);
     ocupados[index] = 1;
-}
+} //
 
-void list_serv()
+void list_serv() //
 {
     printf("############ LISTAGEM ############\n");
 
     for (int i = 0; i < TAM; ++i)
     {
-        if(ocupados[i] == 1 ){
-            printf("\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n",codes_servs[i], nomes[i], SIAPEs[i], RGs[i], CPFs[i], enderecos[i], salarios[i], datas[i], tipos[i]);
-        }
+        if(ocupados[i] == 1 )
+            printf("\n#CODIGO: %s\n#NOME: %s\n#SIAPE: %s\n#RG: %s\n#CPF: %s\n#ENDERECO: %s\n#SALARIO: %s\n#DATA NASC: %s\n#TIPO: %s\n",codes_servs[i], nomes[i], SIAPEs[i], RGs[i], CPFs[i], enderecos[i], salarios[i], datas[i], tipos[i]);
     }
     printf("##################################\n\n");
 }
 
 void list_order_ab() {
-    char indices[TAM];
+    int indices[TAM];
     for (int i = 0; i < TAM; i++) {
         indices[i] = i;
     }
@@ -436,7 +382,7 @@ void list_order_ab() {
     for (int i = 0; i < TAM - 1; i++) {
         for (int j = 0; j < (TAM - 1) - i; j++) {
             if (strcmp(nomes[indices[j]], nomes[indices[j + 1]]) > 0) {
-                char tmp = indices[j];
+                int tmp = indices[j];
                 indices[j] = indices[j + 1];
                 indices[j + 1] = tmp;
 
@@ -453,7 +399,7 @@ void list_order_ab() {
             printf("##########################################\n\n");
         }
     }
-}
+} //
 
 void list_serv_tec()
 {
@@ -464,33 +410,32 @@ void list_serv_tec()
     for (int i = 0; i < TAM; ++i)
     {
         if(ocupados[i] == 1 && (!strcmp(type, "1")) && (!strcmp(tipos[i],"docente"))) {
-            printf("\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n",codes_servs[i], nomes[i], SIAPEs[i], RGs[i], CPFs[i], enderecos[i], salarios[i], datas[i], tipos[i]);
+            printf("\n#CODIGO: %s\n#NOME: %s\n#SIAPE: %s\n#RG: %s\n#CPF: %s\n#ENDERECO: %s\n#SALARIO: %s\n#DATA NASC: %s\n#TIPO: %s\n",codes_servs[i], nomes[i], SIAPEs[i], RGs[i], CPFs[i], enderecos[i], salarios[i], datas[i], tipos[i]);
         }
         else if(ocupados[i] == 1 && (!strcmp(type, "2")) && (!strcmp(tipos[i],"tecnico administrativo"))) {
-            printf("\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n",codes_servs[i], nomes[i], SIAPEs[i], RGs[i], CPFs[i], enderecos[i], salarios[i], datas[i], tipos[i]);
+            printf("\n#CODIGO: %s\n#NOME: %s\n#SIAPE: %s\n#RG: %s\n#CPF: %s\n#ENDERECO: %s\n#SALARIO: %s\n#DATA NASC: %s\n#TIPO: %s\n",codes_servs[i], nomes[i], SIAPEs[i], RGs[i], CPFs[i], enderecos[i], salarios[i], datas[i], tipos[i]);
         }
     }
     printf("##################################\n\n");
-}
+} //
 
-void list_serv_code()
+void list_serv_code() //
 {
     char code[10];
     input(code, 10, "Digite o codigo do servidor para listar:");
     for(int i = 0; i < TAM; i++)
     {
-        if((strcmp(codes_servs[i], code) == 0) && ocupados[i] == 1)
-        {
-            printf("\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n#%s\n",codes_servs[i], nomes[i], SIAPEs[i], RGs[i], CPFs[i], enderecos[i], salarios[i], datas[i], tipos[i]);
-        }
+        if(!(strcmp(codes_servs[i], code)) && ocupados[i] == 1)
+            printf("\n#CODIGO: %s\n#NOME: %s\n#SIAPE: %s\n#RG: %s\n#CPF: %s\n#ENDERECO: %s\n#SALARIO: %s\n#DATA NASC: %s\n#TIPO: %s\n",codes_servs[i], nomes[i], SIAPEs[i], RGs[i], CPFs[i], enderecos[i], salarios[i], datas[i], tipos[i]);
     }
 }
 
-void list_car_code() { // Adaptar para listar todos os veiculos de um servidor
+void list_car_code() { // Pegar um veiculo de um servidor e lista ele
     char code[10];
     input(code, 10, "Digite o codigo do veiculo para listar:");
     int index1 = -1;
     int index2 = -1;
+
     for (int i = 0; i < TAM; ++i) {
         for (int j = 0; j < TAM; ++j) {
             if(strcmp(codes_cars[i][j], code) == 0) {
@@ -508,7 +453,7 @@ void list_car_code() { // Adaptar para listar todos os veiculos de um servidor
             break;
         }
     }
-}
+} //
 
 void edit_car() {
     int index1 = -1;
@@ -534,32 +479,25 @@ void edit_car() {
                 char marca[20];
                 char modelo[255];
 
-                input(code_car, 20, "Codigo do veículo");
+                input(code_car, 20, "Codigo do veiculo");
                 int cmp_count = 0;
                 for(int m = 0; m < TAM; m++) {
                     for (int k = 0; k < TAM; ++k) {
-                        if(strcmp(code_car, codes_cars[m][k]) == 0) {
+                        if(strcmp(code_car, codes_cars[m][k]) == 0)
                             cmp_count++;
-                        }
                     }
                 }
-                for (int n = 1; n > 0; n++) {
-                    if (cmp_count != 0) {
-                        do {
-                            input(code_car, 20, "O codigo não pode se repetir:");
-                            cmp_count = 0;
-                            for(int m = 0; m < TAM; m++) {
-                                for (int k = 0; k < TAM; ++k) {
-                                    if(strcmp(code_car, codes_cars[m][k]) == 0) {
-                                        cmp_count++;
-                                    }
-                                }
+                if (cmp_count != 0 || strlen(code_car) == 0) {
+                    do {
+                        input(code_car, 20, "O codigo não pode se repetir e nao pode estar em branco:");
+                        cmp_count = 0;
+                        for(int m = 0; m < TAM; m++) {
+                            for (int k = 0; k < TAM; ++k) {
+                                if(strcmp(code_car, codes_cars[m][k]) == 0)
+                                    cmp_count++;
                             }
-                        } while (cmp_count != 0);
-
-                    }
-                    else
-                        break;
+                        }
+                    } while (cmp_count != 0 || strlen(code_car) == 0);
                 }
                 cmp_count = 0;
 
@@ -567,9 +505,8 @@ void edit_car() {
                 cmp_count = 0;
                 for(int m = 0; m < TAM; m++) {
                     for (int k = 0; k < TAM; ++k) {
-                        if(strcmp(desc, descs[m][k]) == 0) {
+                        if(strcmp(desc, descs[m][k]) == 0)
                             cmp_count++;
-                        }
                     }
                 }
                 for (int n = 1; n > 0; n++) {
@@ -579,9 +516,8 @@ void edit_car() {
                             cmp_count = 0;
                             for(int m = 0; m < TAM; m++) {
                                 for (int k = 0; k < TAM; ++k) {
-                                    if(strcmp(desc, descs[m][k]) == 0) {
+                                    if(strcmp(desc, descs[m][k]) == 0)
                                         cmp_count++;
-                                    }
                                 }
                             }
                         } while (strlen(desc) == 0 || cmp_count != 0);
@@ -592,40 +528,25 @@ void edit_car() {
                 cmp_count = 0;
 
                 input(placa, 20, "Placa do veiculo:");
-                for (int k = 1; k > 0; k++) {
                     if (strlen(placa) == 0) {
                         do {
                             input(placa, 20, "Esse valor nao pode ficar em branco:");
                         } while (strlen(placa) == 0);
-
                     }
-                    else
-                        break;
-                }
 
                 input(marca, 20, "marca:");
-                for (int k = 1; k > 0; k++) {
                     if (strlen(marca) == 0) {
                         do {
                             input(marca, 20, "Esse valor nao pode ficar em branco:");
                         } while (strlen(marca) == 0);
-
                     }
-                    else
-                        break;
-                }
 
                 input(modelo, 255, "modelo do veiculo:");
-                for (int k = 1; k > 0; k++) {
                     if (strlen(modelo) == 0) {
                         do {
                             input(modelo, 20, "Esse valor nao pode ficar em branco:");
                         } while (strlen(modelo) == 0);
-
                     }
-                    else
-                        break;
-                }
 
                 printf("\n");
 
@@ -644,7 +565,7 @@ void edit_car() {
             }
         }
     }
-}
+} //
 
 void edit_serv() //Edição de servidor por código, vai ser alterado tudo menos o código
 {
@@ -656,6 +577,15 @@ void edit_serv() //Edição de servidor por código, vai ser alterado tudo menos
         index = i;
         if(strcmp(codes_servs[i], code) == 0)
         {
+            strcpy(nomes[index], "");
+            strcpy(SIAPEs[index], "");
+            strcpy(CPFs[index] , "");
+            strcpy(RGs[index], "");
+            strcpy(enderecos[index], "");
+            strcpy(salarios[index], "");
+            strcpy(datas[index], "");
+            strcpy(tipos[index], "");
+
             char nome[255];
             char SIAPE[20];
             char CPF[20];
@@ -666,96 +596,75 @@ void edit_serv() //Edição de servidor por código, vai ser alterado tudo menos
             char tipo[30];
 
             input(nome, 255, "nome:");
-            for (int j = 1; j > 0; j++) {
-                if (strlen(nome) == 0) {
-                    do {
-                        input(nome, 20, "Esse valor nao pode ficar em branco:");
-                    } while (strlen(nome) == 0);
-
-                }
-                else
-                    break;
+            if (strlen(nome) == 0) {
+                do {
+                    input(nome, 20, "Esse valor nao pode ficar em branco:");
+                } while (strlen(nome) == 0);
             }
 
             input(SIAPE, 20, "SIAPE:");
             int cmp_count = 0;
             for(int j = 0; j < TAM; j++) {
-                if(strcmp(SIAPE, SIAPEs[j]) == 0) {
+                if(strcmp(SIAPE, SIAPEs[j]) == 0)
                     cmp_count++;
-                }
             }
-            for (int j = 1; j > 0; j++) {
-                if (strlen(SIAPE) == 0 || cmp_count != 0) {
-                    do {
-                        input(SIAPE, 20, "Esse valor nao pode ficar em branco ou ja foi cadastrado:");
-                        cmp_count = 0;
-                        for(int k = 0; k < 5; k++) {
-                            if(strcmp(SIAPE, SIAPEs[k]) == 0) {
-                                cmp_count++;
-                            }
-                        }
-                    } while (strlen(SIAPE) == 0 || cmp_count != 0);
-
-                }
-                else
-                    break;
+            if (strlen(SIAPE) == 0 || cmp_count != 0) {
+                do {
+                    input(SIAPE, 20, "Esse valor nao pode ficar em branco ou ja foi cadastrado:");
+                    cmp_count = 0;
+                    for(int k = 0; k < 5; k++) {
+                        if(strcmp(SIAPE, SIAPEs[k]) == 0)
+                            cmp_count++;
+                    }
+                } while (strlen(SIAPE) == 0 || cmp_count != 0);
             }
             cmp_count = 0;
 
             input(CPF, 20, "CPF:");
             for(int j = 0; j < TAM; j++) {
-                if(strcmp(CPF, CPFs[j]) == 0) {
+                if(strcmp(CPF, CPFs[j]) == 0)
                     cmp_count++;
-                }
             }
-            for (int j = 1; j > 0; j++) {
-                if (strlen(CPF) == 0 || cmp_count != 0) {
-                    do {
-                        input(CPF, 20, "Esse valor nao pode ficar em branco ou ja foi cadastrado:");
-                        cmp_count = 0;
-                        for(int k = 0; k < 5; k++) {
-                            if(strcmp(CPF, CPFs[k]) == 0) {
-                                cmp_count++;
-                            }
-                        }
-                    } while (strlen(CPF) == 0 || cmp_count != 0);
-
-                }
-                else
-                    break;
+            if (strlen(CPF) == 0 || cmp_count != 0) {
+                do {
+                    input(CPF, 20, "Esse valor nao pode ficar em branco ou ja foi cadastrado:");
+                    cmp_count = 0;
+                    for(int k = 0; k < 5; k++) {
+                        if(strcmp(CPF, CPFs[k]) == 0)
+                            cmp_count++;
+                    }
+                } while (strlen(CPF) == 0 || cmp_count != 0);
             }
             cmp_count = 0;
 
             input(RG, 20, "RG:");
-            input(endereco, 255, "endereco:");
-            input(salario, 20, "salario:");
-            input(data, 20, "data de nascimento:");
-            for (int j = 1; j > 0; j++) {
-                if (strlen(data) == 0) {
-                    do {
-                        input(data, 20, "Esse valor nao pode ficar em branco:");
-                    } while (strlen(data) == 0);
+            if(strlen(RG) == 0)
+                strcpy(RG, "omitido");
 
-                }
-                else
-                    break;
+            input(endereco, 255, "endereco:");
+            if(strlen(endereco) == 0)
+                strcpy(endereco, "omitido");
+
+            input(salario, 20, "salario:");
+            if(strlen(salario) == 0)
+                strcpy(salario, "omitido");
+
+            input(data, 20, "data de nascimento:");
+            if (strlen(data) == 0) {
+                do {
+                    input(data, 20, "Esse valor nao pode ficar em branco:");
+                } while (strlen(data) == 0);
             }
 
             input(tipo, 30, "tipo (1 para docente e 2 para tecnico administrativo):");
-            if(strcmp(tipo, "1") == 0) {
+            if(strcmp(tipo, "1") == 0)
                 strcpy(tipo, "docente");
-            }
-            else if(strcmp(tipo, "2") == 0) {
+
+            else if(strcmp(tipo, "2") == 0)
                 strcpy(tipo, "tecnico administrativo");
-            }
-            else if(strcmp(tipo, "1") != 0 || strcmp(tipo, "2") != 0) {
-                for(int p = 1; p > 0; p++) {
-                    do {
-                        printf("Digite 1 para docente ou 2 para tecnico administrativo:");
-                        input(tipo, 30, "");
-                    } while(strcmp(tipo, "1") != 0 || strcmp(tipo, "2") != 0);
-                }
-            }
+
+            else if(strcmp(tipo, "1") != 0 || strcmp(tipo, "2") != 0 && strlen(tipo) != 0)
+                strcpy(tipo, "omitido");
 
             printf("\n");
 
@@ -797,13 +706,13 @@ void list_cars_code_serv() { // Lista os carros de um servidor com base no codig
     printf("\n##########LISTA DOS VEICULOS DO SERVIDOR##########\n");
     for (int i = 0; i < TAM ; i++) {
         if(ocupados_cars[index][i] == '1') {
-            printf("\n#CODIGO DO VEICULO:\t%s\n#CODIGO DO SERVIDOR DO VEICULO: \t\t\t%s\n#DESCRICAO: \t\t%s\n#PLACA: \t\t\t%s\n#MARCA: \t\t\t%s\n#MODELO: \t\t%s\n",
+            printf("\n#CODIGO DO VEICULO:%s\n#CODIGO DO SERVIDOR DO VEICULO: %s\n#DESCRICAO: %s\n#PLACA: %s\n#MARCA: %s\n#MODELO: %s\n",
                    codes_cars[index][i], codes_servs_cars[index][i], descs[index][i], placas[index][i], marcas[index][i],
                    modelos[index][i]);
             printf("##########################################\n\n");
         }
     }
-}
+} //
 
 void list_cars_ordem_ab() {
     char code[20];
@@ -817,7 +726,7 @@ void list_cars_ordem_ab() {
             }
         }
     }
-    char indices[TAM];
+    int indices[TAM];
     for (int i = 0; i < TAM; i++) {
         indices[i] = i;
     }
@@ -825,7 +734,7 @@ void list_cars_ordem_ab() {
     for (int i = 0; i < TAM - 1; i++) {
         for (int j = 0; j < (TAM - 1) - i; j++) {
             if (strcmp(modelos[index][indices[j]], modelos[index][indices[j + 1]]) > 0) {
-                char tmp = indices[j];
+                int tmp = indices[j];
                 indices[j] = indices[j + 1];
                 indices[j + 1] = tmp;
 
@@ -836,16 +745,15 @@ void list_cars_ordem_ab() {
     printf("\n##########LISTA ORDENADA ALFABETICAMENTE##########\n");
     for (int i = 0; i < TAM ; i++) {
         if(ocupados_cars[index][indices[i]] == '1') {
-            printf("\n#CODIGO DO VEICULO:\t%s\n#CODIGO DO SERVIDOR DO VEICULO: \t\t\t%s\n#DESCRICAO: \t\t%s\n#PLACA: \t\t\t%s\n#MARCA: \t\t\t%s\n#MODELO: \t\t%s\n",
+            printf("\n#CODIGO DO VEICULO: %s\n#CODIGO DO SERVIDOR DO VEICULO: %s\n#DESCRICAO: %s\n#PLACA: %s\n#MARCA: %s\n#MODELO: %s\n",
                    codes_cars[index][indices[i]], codes_servs_cars[index][indices[i]], descs[index][indices[i]], placas[index][indices[i]], marcas[index][indices[i]],
                    modelos[index][indices[i]]);
             printf("##########################################\n\n");
         }
     }
-}
+} //
 
 int main()
 {
-
     return 0;
 }
