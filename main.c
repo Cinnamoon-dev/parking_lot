@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #define TAM 10
@@ -23,6 +24,8 @@ char placas[TAM][TAM][20]; // obrigatorio
 char marcas[TAM][TAM][20]; // obrigatorio
 char modelos[TAM][TAM][255]; // obrigatorio
 char ocupados_cars[TAM][TAM]; //Diz qual espaço da lista está vazio
+
+int op; // usada no menu para selecionar as opções(função)
 
 void lower_case(char str[], int tam) // Passa todos os caracteres para caixa baixa
 {
@@ -133,7 +136,7 @@ void exclude_car() { // Exclui os veiculos pelo codigo do veiculo
     ocupados_cars[index1][index2] = '0';
 } //
 
-void insert_car() //
+void insert_car()
 {
     char v[20];
     int index1 = -1;
@@ -753,7 +756,152 @@ void list_cars_ordem_ab() {
     }
 } //
 
+void bemvindo()
+{
+    printf("OLA SEJA BEM-VINDO A CENTRAL DE CADASTRO COLABORADOR-IFCE\n");
+
+}
+
+void menu() {
+    char op[1];
+    printf("ESCOLHA UMA OPCAO PARA CONTINUAR: ");
+    printf("\n\t1 - CADASTRO USUARIO COLABORADOR-IFCE\n\t2 - CADASTRO VEICULAR POR COLABORADOR\n\t3 - ENCERRAR PROGRAMA ");
+    printf("\n>>>");
+}
+
+void menu_usuario() {
+    int aux = 0;
+    for (int j = 0; j < TAM; ++j) {
+        if (ocupados[j] ==1 ) {
+            aux = aux + 1;
+        }
+    }
+    printf("\nEmpresa XPTO Informatica\n* Cadastro de Usuario *\n");
+    printf("%d usuario cadastrados\n", aux);
+    printf("\t      Menu Principal\n");
+    printf("\t      --------------");
+    printf("\n\t1- Cadastrar Usuario\n\t2- Alterar Usuario\n\t3- Excluir Usuario\n\t4- Listar Usuarios Cadastrados\n\t5- Ordenar Usuarios - Alfabetica\n\t6- Consultar Usuario\n\t7- Listar Servidores-Tecnicos\n\t8- Sair Menu-Usuario");
+    printf("\n      ----------------------------------");
+    printf("\n>>>");
+}
+
+void menu_carro(){
+    int aux = 0;
+    for (int i = 0; i < TAM; ++i) { // AQUI
+        for (int j = 0; j < TAM; ++j) {
+            if(ocupados_cars[i][j] == '1'){
+                aux = aux + 1;
+            }
+        }
+    }
+
+    printf("\nEmpresa XPTO Informatica\n* Cadastro Veicular *\n");
+    printf("\t      Menu Principal\n");
+    printf("%d veiculos cadastrados\n", aux);
+    printf("\t      --------------");
+    printf("\n\t1- Cadastrar Veiculo\n\t2- Alterar Veiculo\n\t3- Excluir Veiculo\n\t4- Listar Veiculos Cadastrados por Servidor\n\t5- Ordenar Veiculos - Alfabetica\n\t6- Consultar Veiculo - Codigo\n\t7- Sair Menu Veiculo");
+    printf("\n      ----------------------------------");
+    printf("\n>>>");
+}
+
+void confir_op(){
+    printf("OPERACAO CONCLUIDA\n");
+}
+
+void invalid_op(){
+    printf("OPCAO INVALIDA, DIGITE NOVAMENTE\n");
+}
+
+void input_menu(){
+    scanf("%d",&op);
+    fflush(stdin);
+}
+
 int main()
 {
+    iniciar();
+    iniciar_cars();
+    do {
+        op = 0;
+        bemvindo();
+        menu();
+        input_menu();
+        switch (op) {
+            case 1:
+                menu_usuario();
+                input_menu();
+                switch (op) {
+                    case 1:
+                        insert_serv();
+                        confir_op();
+                        break;
+                    case 2:
+                        edit_serv();
+                        confir_op();
+                        break;
+                    case 3:
+                        exclude_serv();
+                        confir_op();
+                        break;
+                    case 4:
+                        list_serv();
+                        confir_op();
+                        break;
+                    case 5:
+                        list_order_ab();
+                        confir_op();
+                        break;
+                    case 6:
+                        list_serv_code();
+                        confir_op();
+                        break;
+                    case 7:
+                        list_serv_tec();
+                        confir_op();
+                        break;
+                    case 8:
+                        break;
+                    default:
+                        invalid_op();
+                }
+                break;
+            case 2:
+                menu_carro();
+                input_menu();
+                switch (op) {
+                    case 1:
+                        insert_car();
+                        confir_op();
+                        break;
+                    case 2:
+                        edit_car();
+                        confir_op();
+                        break;
+                    case 3:
+                        exclude_car();
+                        confir_op();
+                        break;
+                    case 4:
+                        list_cars_code_serv();
+                        confir_op();
+                        break;
+                    case 5:
+                        list_cars_ordem_ab();
+                        confir_op();
+                        break;
+                    case 6:
+                        list_car_code();
+                        confir_op();
+                    case 7:
+                        break;
+                    default:
+                        invalid_op();
+                        break;
+                }
+                break;
+            case 3:
+                exit(0);
+        }
+    }while (op!=0);
     return 0;
 }
